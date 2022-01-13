@@ -36,12 +36,26 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Contentful Starter",
-    description: "Official Contentful Gatsby Starter",
+    title: "奥さんの味方の焼肉屋",
+    description: "焼肉屋のマル秘レシピを紹介！焼肉屋のサイドメニューって実は超簡単に作れちゃいます！今晩のおかずにプラスワン！全ては休みなく毎日家族のために頑張る奥さんのために。当店は黒毛和牛A5ランク牝牛専門の焼肉店です。",
   },
-  pathPrefix: "/gatsby-contentful-starter",
+  pathPrefix: "/blog",
   plugins: [
-    "gatsby-transformer-remark",
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          `gatsby-remark-autolink-headers`,
+          {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              exclude: '目次',
+              ordered: true,
+            },
+          },
+        ],
+      },
+    },
     "gatsby-transformer-sharp",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sharp",
@@ -50,5 +64,6 @@ module.exports = {
       resolve: "gatsby-source-contentful",
       options: contentfulConfig,
     },
+    "gatsby-plugin-sitemap",
   ],
 };

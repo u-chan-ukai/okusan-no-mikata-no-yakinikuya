@@ -6,6 +6,8 @@ import Seo from '../components/seo'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import Tags from '../components/tags'
+import ArticlePreview from '../components/article-preview'
+
 import * as styles from './blog-post.module.css'
 
 class BlogPostTemplate extends React.Component {
@@ -13,6 +15,9 @@ class BlogPostTemplate extends React.Component {
     const post = get(this.props, 'data.contentfulBlogPost')
     const previous = get(this.props, 'data.previous')
     const next = get(this.props, 'data.next')
+    const relatedPosts = get(this.props, 'data.contentfulBlogPost.relatedPosts');
+
+    console.log(relatedPosts)
 
     return (
       <Layout location={this.props.location}>
@@ -28,7 +33,7 @@ class BlogPostTemplate extends React.Component {
         />
         <div className={styles.container}>
           <span className={styles.meta}>
-            {post.author?.name} &middot;{' '}
+            {/*post.author?.name*/} &middot;{' '}
             <time dateTime={post.rawDate}>{post.publishDate}</time> –{' '}
             {post.body?.childMarkdownRemark?.timeToRead} minute read
           </span>
@@ -40,6 +45,9 @@ class BlogPostTemplate extends React.Component {
               }}
             />
             <Tags tags={post.tags} />
+
+            <ArticlePreview posts={relatedPosts} isRelated={true}/>
+
             {(previous || next) && (
               <nav>
                 <ul className={styles.articleNavigation}>
@@ -101,7 +109,27 @@ export const pageQuery = graphql`
           excerpt
         }
       }
+      relatedPosts {
+        title
+        slug
+        publishDate(formatString: "MMMM Do, YYYY")
+        tags
+        heroImage {
+          gatsbyImageData(
+            layout: FULL_WIDTH
+            placeholder: BLURRED
+            width: 424
+            height: 212
+          )
+        }
+        description {
+          childMarkdownRemark {
+            html
+          }
+        }
+      }
     }
+
     previous: contentfulBlogPost(slug: { eq: $previousPostSlug }) {
       slug
       title

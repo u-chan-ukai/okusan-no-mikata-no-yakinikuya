@@ -1,5 +1,33 @@
 const path = require('path')
 
+// https://eight-bites.blog/2021/06/related-posts/
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    ContentfulBlogPost: {
+      relatedPosts: {
+        type: ['ContentfulBlogPost'],
+        resolve: (source, args, context, info) => {
+          return context.nodeModel.runQuery({
+            query: {
+              filter: {
+                id: {
+                  ne: source.id,
+                },
+                tags: {
+                  in: source.tags,
+                },
+              },
+            },
+            type: 'ContentfulBlogPost',
+          })
+        },
+      },
+    },
+  }
+
+  createResolvers(resolvers)
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
@@ -51,3 +79,4 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   }
 }
+

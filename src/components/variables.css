@@ -68,7 +68,7 @@
 
   /* size */
   --size-gutter: var(--space-2xl);
-  --size-logo: var(--space-2xl);
+  --size-logo: var(--space-3xl);
   --size-max-width: 80rem;
 }
 
@@ -80,8 +80,8 @@
 
 @media (min-width: 768px) {
   :root {
-    --text-lead: var(--text-2xl);
-    --text-title: var(--text-4xl);
+    --text-lead: var(--text-lg);
+    --text-title: var(--text-3xl);
     --text-prose-tracking: -0.014em;
     --text-prose: var(--text-lg);
   }
