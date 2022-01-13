@@ -38,6 +38,7 @@ module.exports = {
   siteMetadata: {
     title: "奥さんの味方の焼肉屋",
     description: "焼肉屋のマル秘レシピを紹介！焼肉屋のサイドメニューって実は超簡単に作れちゃいます！今晩のおかずにプラスワン！全ては休みなく毎日家族のために頑張る奥さんのために。当店は黒毛和牛A5ランク牝牛専門の焼肉店です。",
+    siteUrl: "https://okusan-no-mikata-yakinikuya.com",
   },
   pathPrefix: "/blog",
   plugins: [
