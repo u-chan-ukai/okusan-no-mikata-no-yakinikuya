@@ -65,15 +65,17 @@ a.active {
 }
 
 tt,
+blockquote,
 code,
 kbd {
   background: var(--black-fade-5);
-  padding-bottom: 0.2em;
-  padding-top: 0.2em;
+  padding: 0 1rem;
+  margin: 0.2rem 0.2rem 0 0.2rem;
 }
 
 tt,
 code,
+blockquote,
 kbd {
   font-family: var(--font-monospace);
   font-size: 90%;
@@ -89,6 +91,8 @@ code {
 
 code:before,
 code:after,
+blockquote:before,
+blockquote:after,
 tt:before,
 tt:after {
   content: ' ';
@@ -96,6 +100,22 @@ tt:after {
 }
 
 pre,
+blockquote,
 code {
   font-family: var(--font-monospace);
+}
+
+.movie-wrap {
+  position: relative;
+  padding-bottom: 56.25%; /*アスペクト比 16:9の場合の縦幅*/
+  height: 0;
+  overflow: hidden;
+}
+
+.movie-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
