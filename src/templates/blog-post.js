@@ -17,8 +17,6 @@ class BlogPostTemplate extends React.Component {
     const next = get(this.props, 'data.next')
     const relatedPosts = get(this.props, 'data.contentfulBlogPost.relatedPosts');
 
-    console.log(relatedPosts)
-
     return (
       <Layout location={this.props.location}>
         <Seo
