@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from "react-helmet"
 
 import './variables.css'
 import './global.css'
@@ -12,6 +13,21 @@ class Template extends React.Component {
     return (
       <>
         <Seo />
+        {
+          process.env.NODE_ENV === "production" ? (
+            <Helmet>
+              <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNSBNT6G4M"></script>
+              <script>
+                {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-GNSBNT6G4M');
+                `}
+              </script>
+            </Helmet>
+          ) : ""
+        }
         <Navigation />
         <main>{children}</main>
         <Footer />
