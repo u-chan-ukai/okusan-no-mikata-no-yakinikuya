@@ -65,11 +65,6 @@ module.exports = {
       resolve: "gatsby-source-contentful",
       options: contentfulConfig,
     },
-    {
-      resolve: `gatsby-plugin-sitemap`,
-      options: {
-        output: `/sitemap.xml`,
-      }
-    }
+    `gatsby-plugin-sitemap`,
   ],
 };
